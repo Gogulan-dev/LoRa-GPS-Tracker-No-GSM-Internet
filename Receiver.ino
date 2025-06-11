@@ -194,4 +194,24 @@ void handleWebPage() {
                 color: white;
             }
             .card-body {
-                background-co
+                background-color: #d4edda;
+            }
+        </style>
+</head>
+<body>
+    <h1>ESP32 GPS Tracker</h1>
+    <div class="container p-3 my-3 border">
+        <p class = "card-body">Latitude: <span class ="card-header" id="lat">Loading...</span></p>
+        <p class="card-body">Longitude: <span class = "card-header" id="lng">Loading...</span></p>
+        <p class="card-body">Distance from Center: <span class = "card-header" id="dist">Loading...</span></p>
+    </div>
+    <div class="container p-3 my-3 border">
+    <p>Alert: <span id="alert">Loading...</span></p>
+    </div>
+    <div id="map" style="width: 100%; height: 500px;"></div>
+</body>
+</html>
+  )rawliteral";
+
+  server.send(200, "text/html", html);
+}
