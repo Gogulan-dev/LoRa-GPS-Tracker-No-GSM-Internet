@@ -10,9 +10,8 @@
     <script>
         let map, marker, path, geofenceCircle, geofenceLine;
         let pathCoordinates = [];
-        let geofenceCenter = { lat: 11.912588, lng: 79.635101 }; // Geofence center coordinates
-        let geofenceRadius = 150.0; // 10 meters 79.635101
-
+        let geofenceCenter = { lat: 11.912588, lng: 79.635101 };
+        let geofenceRadius = 150.0;
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
                 center: geofenceCenter,
@@ -25,7 +24,7 @@
                 title: "Tracker",
             });
 
-            // Create a polyline for tracking movement
+            
             path = new google.maps.Polyline({
                 path: pathCoordinates,
                 geodesic: true,
@@ -35,7 +34,7 @@
                 map: map
             });
 
-            // Draw geofence circle
+            
             geofenceCircle = new google.maps.Circle({
                 strokeColor: "#0000FF",
                 strokeOpacity: 0.8,
@@ -47,9 +46,9 @@
                 radius: geofenceRadius
             });
 
-            // Line connecting geofence center to tracker
+            
             geofenceLine = new google.maps.Polyline({
-                strokeColor: "#FF0000",  // Red line
+                strokeColor: "#FF0000",  
                 strokeOpacity: 1.0,
                 strokeWeight: 2,
                 map: map
@@ -71,28 +70,27 @@
                 document.getElementById('alert').innerText = data.alert;
                 document.getElementById('alert').style.color = (data.distance > geofenceRadius) ? "red" : "green";
 
-                // Update marker position
                 marker.setPosition(newPos);
                 map.setCenter(newPos);
 
-                // Update tracking path
+      
                 pathCoordinates.push(newPos);
                 path.setPath(pathCoordinates);
 
-                // Update geofence line (red line from center to tracker)
+               
                 geofenceLine.setPath([geofenceCenter, newPos]);
-                geofenceLine.setMap(map); // Re-add to map
+                geofenceLine.setMap(map); 
             })
             .catch(error => console.error('Error fetching data:', error));
         }
     </script>
         <style>
             .card-header {
-                background-color: #007bff; /* Blue */
+                background-color: #007bff;
                 color: white;
             }
             .card-body {
-                background-color: #d4edda; /* Light Green */
+                background-color: #d4edda; 
             }
         </style>
 </head>
