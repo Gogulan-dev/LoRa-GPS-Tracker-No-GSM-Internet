@@ -3,11 +3,9 @@
 #include <SPI.h>
 #include <LoRa.h>
 
-// Define GPS module pins
-#define RX_PIN 4  // GPS TX -> Nano RX
-#define TX_PIN 3  // GPS RX -> Nano TX
+#define RX_PIN 4
+#define TX_PIN 3
 
-// LoRa module connections
 #define SS 10
 #define RST 9
 #define DIO0 2
@@ -19,7 +17,6 @@ void setup() {
   Serial.begin(9600);
   gpsSerial.begin(9600);
   
-  // LoRa setup
   SPI.begin();
   LoRa.setPins(SS, RST, DIO0);
   
@@ -39,7 +36,6 @@ void loop() {
         float latitude = gps.location.lat();
         float longitude = gps.location.lng();
 
-        // Transmit GPS data
         LoRa.beginPacket();
         LoRa.print(latitude, 6);
         LoRa.print(",");
